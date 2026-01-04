@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Bots do Servidor</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --main:#27034D;
+  --cover:#3b0a6d;
+}
+
+/* RESET */
+body{
+  margin:0;
+  font-family:'Inter',sans-serif;
+  background:#0f0f0f;
+  color:#fff;
+}
+
+/* SLIDES */
+.slide{
+  min-height:100vh;
+  display:none;
+}
+.slide.active{
+  display:block;
+  animation:slideIn .45s ease;
+}
+@keyframes slideIn{
+  from{opacity:0; transform:translateX(40px);}
+  to{opacity:1; transform:none;}
+}
+
+/* SETAS */
+.arrow{
+  position:fixed;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:46px;
+  cursor:pointer;
+  opacity:.6;
+  transition:.25s;
+  z-index:9999;
+}
+.arrow:hover{
+  opacity:1;
+  transform:translateY(-50%) scale(1.15);
+}
+.arrow.right{ right:24px; }
+.arrow.left{ left:24px; }
+.hidden{ display:none; }
+
+/* CAPA */
+.cover{
+  background:var(--cover);
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.cover img{
+  max-width:85%;
+}
+</style>
+</head>
+
+<body>
+
+<!-- SETAS -->
+<div class="arrow right" id="goMain" onclick="goMain()">❯</div>
+<div class="arrow left hidden" id="goCover" onclick="goCover()">❮</div>
+
+<!-- CAPA -->
+<section id="introSlide" class="slide active">
+  <div class="cover">
+    <img src="images/capa.png" alt="Capa">
+  </div>
+</section>
+
+<!--  CONTEÚDO ORIGINAL  -->
+<section id="mainSlide" class="slide">
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Bots do Servidor</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{ --main:#27034D; }
+
+
+/*  SLIDES  */
+.slide{
+  display:none;
+  animation:fade .4s ease;
+}
+
+.slide.active{
+  display:block;
+}
+
+@keyframes fade{
+  from{opacity:0; transform:translateX(20px);}
+  to{opacity:1; transform:none;}
+}
+
+/*  SETAS  */
+.arrow{
+  position:fixed;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:42px;
+  color:#fff;
+  cursor:pointer;
+  user-select:none;
+  opacity:.55;
+  transition:.25s;
+  z-index:999;
+}
+
+.arrow:hover{
+  opacity:1;
+  transform:translateY(-50%) scale(1.15);
+}
+
+.arrow.left{ left:24px; }
+.arrow.right{ right:24px; }
+
+.hidden{ display:none; }
+
+body{
+  margin:0;
+  font-family:'Inter',sans-serif;
+  color:#fff;
+  background:#0f0f0f url("images/background.png") center/600px no-repeat fixed;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.82);
+  z-index:-1;
+}
+
+.header{
+  text-align:center;
+  max-width:820px;
+  margin:20px auto;
+  font-size:14px;
+  line-height:1.6;
+  padding:0 16px;
+}
+
+.menu{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:22px;
+  padding-bottom:40px;
+}
+
+.column{
+  width:100%;
+  max-width:560px;
+  background:var(--main);
+  border-radius:20px;
+  padding:20px;
+}
+
+.column h2{
+  margin:0 0 16px;
+  text-align:center;
+  font-size:15px;
+  border-bottom:2px solid rgba(255,255,255,.35);
+  padding-bottom:8px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(72px,1fr));
+  gap:22px;
+  justify-items:center;
+}
+
+.bot{
+  background:none;
+  border:none;
+  cursor:pointer;
+  padding:0;
+  transition:.25s;
+}
+
+.bot img{
+  width:68px;
+}
+
+.bot:hover{
+  transform:scale(1.2);
+  filter:drop-shadow(0 0 10px rgba(255,255,255,.45));
+}
+
+.info{
+  display:none;
+  max-width:900px;
+  margin:24px auto;
+  padding:22px;
+}
+
+.info h1{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-size:22px;
+}
+
+.info img{ width:48px; }
+
+.info p{
+  font-size:14px;
+  line-height:1.8;
+  margin:12px 0;
+}
+
+.section{
+  margin-top:18px;
+}
+
+.section h3{
+  font-size:15px;
+  margin-bottom:6px;
+  color:#ddd;
+}
+
+ul{
+  margin:8px 0 0 18px;
+  font-size:14px;
+  line-height:1.7;
+}
+
+code{
+  display:block;
+  background:rgba(255,255,255,.1);
+  padding:12px;
+  border-radius:12px;
+  font-size:13px;
+  margin-top:10px;
+}
+
+.back{
+  margin-top:22px;
+  background:var(--main);
+  border:none;
+  border-radius:14px;
+  padding:10px 26px;
+  color:#fff;
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+Aqui estão todas as informações detalhadas dos bots utilizados em nosso servidor.<br>
+Clique na logo de qualquer bot para visualizar seu funcionamento, exemplos práticos e lista completa de comandos.
+</div>
+
+<section class="menu" id="menu">
+
+<div class="column">
+<h2>📊 ESTATÍSTICAS</h2>
+<div class="grid">
+<button class="bot" onclick="openBot('valotracker')"><img src="images/valotracker.png"></button>
+<button class="bot" onclick="openBot('zoe')"><img src="images/zoe.png"></button>
+</div>
+</div>
+
+<div class="column">
+<h2>🛡️ MODERAÇÃO</h2>
+<div class="grid">
+<button class="bot" onclick="openBot('dyno')"><img src="images/dyno.png"></button>
+<button class="bot" onclick="openBot('loritta')"><img src="images/loritta.png"></button>
+<button class="bot" onclick="openBot('zira')"><img src="images/zira.png"></button>
+</div>
+</div>
+
+<div class="column">
+<h2>🎉 DIVERSÃO</h2>
+<div class="grid">
+<button class="bot" onclick="openBot('mudae')"><img src="images/mudae.png"></button>
+<button class="bot" onclick="openBot('gartic')"><img src="images/gartic.png"></button>
+<button class="bot" onclick="openBot('jockie')"><img src="images/jockie.png"></button>
+</div>
+</div>
+
+<div class="column">
+<h2>🧰 UTILIDADES</h2>
+<div class="grid">
+<button class="bot" onclick="openBot('xenon')"><img src="images/xenon.png"></button>
+<button class="bot" onclick="openBot('invite')"><img src="images/invite.png"></button>
+<button class="bot" onclick="openBot('patchbot')"><img src="images/patchbot.png"></button>
+</div>
+</div>
+
+</section>
+
+<section class="info" id="info">
+
+<!-- VALOTRACKER -->
+<div id="valotracker">
+<h1><img src="images/valotracker.png"> ValoTracker</h1>
+
+<p>ValoTracker é um bot especializado em estatísticas competitivas de Valorant. Ele consulta APIs públicas e bancos de dados de partidas para fornecer informações detalhadas sobre o desempenho dos jogadores.</p>
+
+<div class="section">
+<h3>📌 O que ele faz</h3>
+<ul>
+<li>Consulta ranking atual e histórico de elo</li>
+<li>Mostra estatísticas detalhadas por agente</li>
+<li>Exibe histórico recente de partidas ranqueadas</li>
+<li>Analisa taxa de vitória e K/D</li>
+</ul>
+</div>
+
+<div class="section">
+<h3>⚙️ Como funciona</h3>
+<p>O bot coleta dados públicos vinculados ao Riot ID informado, processa estatísticas e retorna resultados formatados diretamente no Discord.</p>
+</div>
+
+<div class="section">
+<h3>⌨️ Comandos</h3>
+<code>
+!valo nome#tag  
+!valo rank nome#tag  
+!valo last nome#tag  
+!valo agents nome#tag  
+!valo kd nome#tag
+</code>
+</div>
+
+<button class="back" onclick="back()">Voltar</button>
+</div>
+
+<!-- ZOE -->
+<div id="zoe">
+<h1><img src="images/zoe.png"> Zoe (League of Legends)</h1>
+
+<p>Zoe é um bot focado em estatísticas completas de League of Legends, ideal para análise de desempenho individual ou comparação entre jogadores.</p>
+
+<div class="section">
+<h3>📌 Funcionalidades</h3>
+<ul>
+<li>Elo atual em todas as filas</li>
+<li>Histórico de partidas recentes</li>
+<li>Campeões mais jogados</li>
+<li>Winrate por campeão</li>
+</ul>
+</div>
+
+<div class="section">
+<h3>⌨️ Comandos</h3>
+<code>
+!lol perfil nick  
+!lol rank nick  
+!lol last nick  
+!lol champs nick  
+!lol matchup nick inimigo
+</code>
+</div>
+
+<button class="back" onclick="back()">Voltar</button>
+</div>
+
+<!-- DYNO -->
+<div id="dyno">
+<h1><img src="images/dyno.png"> Dyno</h1>
+
+<p>Dyno é um bot de moderação avançada que automatiza punições, organiza regras e mantém logs completos de ações administrativas.</p>
+
+<div class="section">
+<h3>🛡️ Recursos</h3>
+<ul>
+<li>Banimentos automáticos por infração</li>
+<li>Filtro de spam, flood e links</li>
+<li>Logs de mensagens apagadas</li>
+<li>Automod configurável</li>
+</ul>
+</div>
+
+<div class="section">
+<h3>⌨️ Comandos</h3>
+<code>
+?ban @usuário motivo  
+?mute @usuário tempo  
+?warn @usuário motivo  
+?purge 50  
+?automod
+</code>
+</div>
+
+<button class="back" onclick="back()">Voltar</button>
+</div>
+
+<!-- MUDAE -->
+<div id="mudae">
+<h1><img src="images/mudae.png"> Mudae</h1>
+
+<p>Mudae é um bot de entretenimento focado em coleção de personagens de animes, jogos e séries, com sistema competitivo e economia interna.</p>
+
+<div class="section">
+<h3>🎮 Sistemas</h3>
+<ul>
+<li>Rolls diários de personagens</li>
+<li>Casamento e troca entre usuários</li>
+<li>Ranking por valor e raridade</li>
+</ul>
+</div>
+
+<div class="section">
+<h3>⌨️ Comandos</h3>
+<code>
+$wa / $ha  
+$marry  
+$divorce  
+$mm  
+$top  
+$profile
+</code>
+</div>
+
+<button class="back" onclick="back()">Voltar</button>
+</div>
+
+<!-- JOCKIE -->
+<div id="jockie">
+<h1><img src="images/jockie.png"> Jockie Music</h1>
+
+<p>Jockie Music é um bot de música de alta qualidade, permitindo múltiplas instâncias simultâneas sem interrupções.</p>
+
+<div class="section">
+<h3>🎵 Recursos</h3>
+<ul>
+<li>Spotify, YouTube e SoundCloud</li>
+<li>Playlists persistentes</li>
+<li>Controle avançado da fila</li>
+</ul>
+</div>
+
+<div class="section">
+<h3>⌨️ Comandos</h3>
+<code>
+!play música  
+!pause  
+!skip  
+!queue  
+!loop  
+!volume 50
+</code>
+</div>
+
+<button class="back" onclick="back()">Voltar</button>
+</div>
+
+
+
+<!-- LORITTA -->
+<div id="loritta">
+<h1><img src="images/loritta.png"> Loritta</h1>
+<p>Bot brasileiro multifuncional focado em moderação, automação e entretenimento.</p>
+
+<div class="section">
+<h3>Principais funções</h3>
+<ul>
+<li>Ban, kick e mute temporário</li>
+<li>Automod contra spam e palavrões</li>
+<li>Sistema de economia e reputação</li>
+</ul>
+</div>
+
+<div class="section">
+<h3>Comandos</h3>
+<code>
++ban @user motivo  
++mute @user tempo  
++kick @user  
++rep @user  
++daily  
++config
+</code>
+</div>
+
+<button class="back" onclick="back()">Voltar</button>
+</div>
+
+<!-- ZIRA -->
+<div id="zira">
+<h1><img src="images/zira.png"> Zira</h1>
+<p>Bot especializado em cargos automáticos por reação.</p>
+
+<div class="section">
+<h3>Funções</h3>
+<ul>
+<li>Cargos por emoji</li>
+<li>Auto-organização de membros</li>
+<li>Mensagens persistentes</li>
+</ul>
+</div>
+
+<div class="section">
+<h3>Comandos</h3>
+<code>
+z/setup  
+z/message  
+z/add @cargo 😀  
+z/remove @cargo  
+z/clear
+</code>
+</div>
+
+<button class="back" onclick="back()">Voltar</button>
+</div>
+
+<!-- GARTIC BOT -->
+<div id="gartic">
+<h1><img src="images/gartic.png"> Gartic Bot</h1>
+<p>Cria salas do Gartic.io diretamente pelo Discord.</p>
+
+<div class="section">
+<h3>Como funciona</h3>
+<ul>
+<li>Criação automática de salas</li>
+<li>Suporte a idiomas</li>
+<li>Ideal para eventos</li>
+</ul>
+</div>
+
+<div class="section">
+<h3>Comandos</h3>
+<code>
+!gartic  
+!gartic pt  
+!gartic custom  
+!gartic invite
+</code>
+</div>
+
+<button class="back" onclick="back()">Voltar</button>
+</div>
+
+<!-- INVITE TRACKER -->
+<div id="invite">
+<h1><img src="images/invite.png"> Invite Tracker</h1>
+<p>Monitora convites e identifica quem convidou cada membro.</p>
+
+<div class="section">
+<h3>Funções</h3>
+<ul>
+<li>Contagem real de convites</li>
+<li>Ranking de invites</li>
+<li>Detecção de convites falsos</li>
+</ul>
+</div>
+
+<div class="section">
+<h3>Comandos</h3>
+<code>
+!invites  
+!invites @user  
+!leaderboard  
+!inviteroles
+</code>
+</div>
+
+<button class="back" onclick="back()">Voltar</button>
+</div>
+
+<!-- XENON -->
+<div id="xenon">
+<h1><img src="images/xenon.png"> Xenon</h1>
+<p>Bot de backup e restauração completa de servidores.</p>
+
+<div class="section">
+<h3>Recursos</h3>
+<ul>
+<li>Backup de cargos e canais</li>
+<li>Restauração automática</li>
+<li>Migração de servidores</li>
+</ul>
+</div>
+
+<div class="section">
+<h3>Comandos</h3>
+<code>
+/backup create  
+/backup list  
+/backup load ID  
+/backup delete
+</code>
+</div>
+
+<button class="back" onclick="back()">Voltar</button>
+</div>
+
+<!-- PATCHBOT -->
+<div id="patchbot">
+<h1><img src="images/patchbot.png"> Patchbot</h1>
+<p>Notifica patches e atualizações oficiais de jogos. Exemplos: League of Legends, Valorant, etc.</p>
+
+<div class="section">
+<h3>O que faz</h3>
+<ul>
+<li>Alertas de novos patches</li>
+<li>Notas oficiais</li>
+<li>Atualizações automáticas</li>
+</ul>
+</div>
+
+<div class="section">
+<h3>Comandos</h3>
+<code>
+!patch  
+!patch latest  
+!patch history  
+!patch subscribe
+</code>
+</div>
+
+<button class="back" onclick="back()">Voltar</button>
+</div>
+
+</section>
+
+<script>
+function openBot(id){
+  menu.style.display='none';
+  info.style.display='block';
+  [...info.children].forEach(b=>b.style.display='none');
+  document.getElementById(id).style.display='block';
+}
+
+function back(){
+  info.style.display='none';
+  menu.style.display='flex';
+}
+
+</script>
+</body>
+</html>
+
+</section>
+
+<script>
+const intro = document.getElementById('introSlide');
+const main  = document.getElementById('mainSlide');
+const goMainBtn = document.getElementById('goMain');
+const goCoverBtn = document.getElementById('goCover');
+
+function goMain(){
+  intro.classList.remove('active');
+  main.classList.add('active');
+  goMainBtn.classList.add('hidden');
+  goCoverBtn.classList.remove('hidden');
+}
+
+function goCover(){
+  main.classList.remove('active');
+  intro.classList.add('active');
+  goCoverBtn.classList.add('hidden');
+  goMainBtn.classList.remove('hidden');
+}
+
+/*  FUNÇÕES ORIGINAIS (NÃO QUEBRAM)  */
+function openBot(id){
+  menu.style.display='none';
+  info.style.display='block';
+
+  [...info.children].forEach(b=>b.style.display='none');
+  const bot=document.getElementById(id);
+  if(bot) bot.style.display='block';
+
+  goCoverBtn.classList.add('hidden');
+}
+
+function back(){
+  info.style.display='none';
+  menu.style.display='flex';
+  goCoverBtn.classList.remove('hidden');
+}
+</script>
+
+</body>
+</html>
